@@ -6,12 +6,12 @@ using UnityEngine;
 public class PlayerMovement : MonoBehaviour
 {
     [Header("Speeds")]
-    public float walkSpeed = 6f;
-    public float runSpeed = 12f;
+    public float walkSpeed = 8f;
+    public float runSpeed = 16f;
     public float crouchSpeed = 3f;
 
     [Header("Jump & Gravity")]
-    public float jumpPower = 7f;
+    public float jumpPower = 4f;
     public float gravity = 10f;
 
     [Header("Crouch Settings")]
@@ -19,7 +19,7 @@ public class PlayerMovement : MonoBehaviour
     public float crouchHeight = 1f;
 
     [Header("Animation")]
-    public Animator animator;  // Перетягни сюди свій Animator
+
 
     private CharacterController characterController;
     private Vector3 moveDirection = Vector3.zero;
@@ -82,11 +82,5 @@ public class PlayerMovement : MonoBehaviour
         // виконуємо рух
         characterController.Move(moveDirection * Time.deltaTime);
 
-        // горизонтальна швидкість для Blend Tree або переходів
-        Vector3 horizontalVel = new Vector3(characterController.velocity.x, 0, characterController.velocity.z);
-        animator.SetFloat("Speed", horizontalVel.magnitude);
-
-        // стрибок — true, коли не на землі
-        animator.SetBool("IsJumping", !isGrounded);
     }
 }
